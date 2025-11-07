@@ -1,9 +1,11 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 
 //Routes
 
-import languageRoutes from "./routes/language.routes";
+import usersRouter from "./routes/users.routes.js";
+import authRouter from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -15,10 +17,20 @@ app.set("port", 4000);
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 //Routes
 
-app.use("/api/languages", languageRoutes);
+app.use("/api", usersRouter);
+app.use('/api/auth', authRouter);
+
+app.use((req,res, next) => {
+
+    res.status(404).json({
+        message: "Page not found",
+    })
+});
 
 export default app;
+
 
