@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutri_app/core/controllers/auth_storage.dart';
 import 'package:nutri_app/core/presentations/auth/login_page.dart';
-import 'package:nutri_app/core/presentations/home_page.dart';
+import 'package:nutri_app/core/presentations/second_screen.dart';
 import 'package:nutri_app/core/providers/auth_provider.dart';
 
 class MyApp extends ConsumerStatefulWidget {

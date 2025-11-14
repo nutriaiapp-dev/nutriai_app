@@ -1,7 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nutri_app/core/presentations/home_page.dart';
+import 'package:nutri_app/core/presentations/second_screen.dart';
 import 'package:nutri_app/core/presentations/widgets/auth_dialog.dart';
 import 'package:nutri_app/core/providers/auth_provider.dart';
 
@@ -11,22 +10,22 @@ Future<void> login(
   TextEditingController emailController,
   TextEditingController passwordController,
 ) async {
-  await ref
+  // 1. Ejecutar la lógica y esperar el resultado (true/false)
+  final success = await ref
       .read(authProvider.notifier)
-      .login(context, emailController.text, passwordController.text,);
+      .login(emailController.text, passwordController.text);
 
-  final isMonted = context.mounted;
+  // 2. Verificar montaje antes de usar el contexto
+  if (!context.mounted) return;
 
-  final token = ref.read(authProvider);
-
-  if (token != null) {
-    if (Navigator.of(context).mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const SecondScreen()),
-      );
-    } else if {
-        showErrorDialog(context);
-    }
+  if (success) {
+    // Éxito: Navegar
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const SecondScreen()),
+    );
+  } else {
+    // Fracaso: Mostrar diálogo de error (se hace en la UI)
+    showErrorDialog(context);
   }
 }

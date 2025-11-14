@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
 
   try {
     const [rows] = await pool.query(
-      "INSERT INTO tb_usuarios (nombre, email, password, fecha_nacimiento, nivel_actividad, comuna, fecha_registro, sexo, altura_cm, peso_kg) VALUES (?, ?, ?, ?)",
+      "INSERT INTO tb_usuarios (nombre, email, password, fecha_nacimiento, nivel_actividad, comuna, fecha_registro, sexo, altura_cm, peso_kg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [code, description, price, quantity]
     );
     res.send({ rows });

@@ -10,14 +10,16 @@ const JWT_SECRET = 'your_jwt_secret';
 // Registro de Usuarios - HASH JWT
 
 export const registerUser = async (req, res) => {
-
-    const { nombre, email, password } = req.body;
+    // CORRECCIÓN: Destructurando campos con los nombres que vienen de Dart (altura, peso)
+    const { nombre, email, password, fecha_nacimiento, nivel_actividad, comuna, sexo, altura, peso, fecha_registro } = req.body;
     const hashedPassword = await bcrypt.hash(password,10);
 
     try {
-
-        await pool.execute('INSERT INTO tb_usuarios (nombre, email, password) VALUES (?, ?, ?)', [nombre, email, hashedPassword]);
-        res.status(201).send('Usuario registrado');
+                
+        await pool.execute('INSERT INTO tb_usuarios (nombre, email, password, fecha_nacimiento, nivel_actividad, comuna, sexo, altura_cm, peso_kg, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            [nombre, email, hashedPassword, fecha_nacimiento, nivel_actividad, comuna, sexo, altura, peso, fecha_registro]);
+            
+        res.status(201).send('Usuario registrado OK');
 
     } catch (error) {
 
@@ -60,7 +62,6 @@ export const loginUser = async (req, res) => {
     }
             
 };
-
 
 export default router;
 

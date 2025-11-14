@@ -16,8 +16,26 @@ class RegisterNotifier extends StateNotifier<String?> {
     String nombre,
     String email,
     String password,
+    String dateBirth,
+    String comuna,
+    String activityLevel,
+    String sexoUsuario,
+    String altura,
+    String peso,
+    String fechaRegistro,
   ) async {
-    final token = await _authService.register(nombre, email, password);
+    final token = await _authService.register(
+      nombre,
+      email,
+      password,
+      dateBirth,
+      comuna,
+      fechaRegistro,
+      activityLevel,
+      sexoUsuario,
+      altura,
+      peso,
+    );
     if (token != null) {
       state = token;
       await AuthStorage().saveToken(token);

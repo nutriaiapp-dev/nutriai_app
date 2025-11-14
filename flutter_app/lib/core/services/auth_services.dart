@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class AuthService {
   Future<String?> login(String email, String password) async {
     final response = await http.post(
-      Uri.parse('http://localhost:4000/api/auth/login'),
+      Uri.parse('http://10.0.2.2:4000/api/auth/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -19,9 +19,20 @@ class AuthService {
     }
   }
 
-  Future<String?> register(String nombre, String email, String password) async {
+  Future<String?> register(
+    String nombre,
+    String email,
+    String password,
+    String dateBirth,
+    String comuna,
+    String activityLevel,
+    String sexoUsuario,
+    String altura,
+    String peso,
+    String fechaRegistro,
+  ) async {
     final response = await http.post(
-      Uri.parse('http://localhost:4000/api/auth/register'),
+      Uri.parse('http://10.0.2.2:4000/api/auth/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -29,6 +40,13 @@ class AuthService {
         'nombre': nombre,
         'email': email,
         'password': password,
+        'fecha_nacimiento': dateBirth,
+        'nivel_actividad': activityLevel,
+        'comuna': comuna,
+        'sexo': sexoUsuario,
+        'altura': altura,
+        'peso': peso,
+        'fecha_registro': fechaRegistro,
       }),
     );
 

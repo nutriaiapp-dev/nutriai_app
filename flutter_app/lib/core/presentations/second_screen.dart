@@ -31,7 +31,9 @@ class SecondScreenState extends ConsumerState<SecondScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page Screen'),
+        backgroundColor: Color.fromRGBO(55, 125, 68, 1.0),
+        foregroundColor: Color.fromRGBO(227, 230, 34, 1),
+        title: const Text('Menu Principal'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),

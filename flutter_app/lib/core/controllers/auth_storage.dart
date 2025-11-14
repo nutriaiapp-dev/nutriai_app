@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -20,27 +19,28 @@ class AuthStorage {
 
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join.(dbPath, 'auth.db');
+    final path = join(dbPath, 'auth.db');
     return openDatabase(
       path,
       onCreate: (db, version) {
-        return db.execute("CREATE TABLE auth (token TEXT)",
-      );
-    },
-    version: 1,
-  );
+        return db.execute("CREATE TABLE auth (token TEXT)");
+      },
+      version: 1,
+    );
   }
 
   Future<void> saveToken(String token) async {
     final db = await database;
-    await db.insert('auth', {'token': token}, conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert('auth', {
+      'token': token,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<String?> getToken() async {
     final db = await database;
-    final result = await db.query ('auth');
-    if(result.isNotEmpty) {
-        return result.first['token'] as String?;
+    final result = await db.query('auth');
+    if (result.isNotEmpty) {
+      return result.first['token'] as String?;
     }
     return null;
   }
@@ -48,7 +48,5 @@ class AuthStorage {
   Future<void> deleteToken() async {
     final db = await database;
     await db.delete('auth');
-
   }
-
 }
