@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutri_app/core/controllers/auth_storage.dart';
 import 'package:nutri_app/core/presentations/auth/login_page.dart';
 import 'package:nutri_app/core/providers/auth_provider.dart';
+import 'package:nutri_app/core/presentations/widgets/main_drawer.dart';
 
 class SecondScreen extends ConsumerStatefulWidget {
   const SecondScreen({super.key});
@@ -41,7 +42,44 @@ class SecondScreenState extends ConsumerState<SecondScreen> {
           ), // IconButton
         ],
       ),
-      body: const Center(child: Text('Bienvenido a NutriAI App')),
+      drawer: const MyDrawer(),
+      endDrawer: const MyDrawer(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Centra verticalmente
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(
+                16.0,
+              ), // Ajusta el valor para el radio
+              child: Image.asset(
+                'assets/images/welcome_app.png',
+                width: 250,
+                height: 250,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            Text(
+              'Bienvenido a NutriAI App',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+
+                color: Colors.grey[700],
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              'Tu plan de nutrición inteligente comienza aquí.',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

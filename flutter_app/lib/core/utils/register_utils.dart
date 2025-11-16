@@ -39,7 +39,6 @@ Future<void> register(
   final token = ref.read(registerProvider);
   if (token != null && context.mounted) {
     // Asumiendo que SecondScreen está definida en otra parte
-    // Asegúrate de importar 'SecondScreen' si es necesario
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const SecondScreen()),

@@ -14,7 +14,6 @@ Future<void> login(
   final success = await ref
       .read(authProvider.notifier)
       .login(emailController.text, passwordController.text);
-
   // 2. Verificar montaje antes de usar el contexto
   if (!context.mounted) return;
 
