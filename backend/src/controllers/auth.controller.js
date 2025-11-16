@@ -10,7 +10,7 @@ const JWT_SECRET = 'your_jwt_secret';
 // Registro de Usuarios - HASH JWT
 
 export const registerUser = async (req, res) => {
-    // CORRECCIÓN: Destructurando campos con los nombres que vienen de Dart (altura, peso)
+
     const { nombre, email, password, fecha_nacimiento, nivel_actividad, comuna, sexo, altura, peso, fecha_registro } = req.body;
     const hashedPassword = await bcrypt.hash(password,10);
 
